@@ -52,6 +52,7 @@ public class GameState {
     public GameState() { //Cntr
         turn = first();
         board = new Board();
+        assignPieces();
         grave_1 = new Graveyard();
         grave_2 = new Graveyard();
         pieces1 = new ArrayList<Piece>();
@@ -65,6 +66,7 @@ public class GameState {
 
         this.turn = orig.turn;
         this.board = orig.board;
+        assignPieces();
         this.grave_1 = orig.grave_1;
         this.grave_2 = orig.grave_2;
         this.pieces1.addAll(orig.pieces1);
