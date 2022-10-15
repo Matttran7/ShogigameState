@@ -1,0 +1,47 @@
+Chores!!!
+
+Kat
+-------------------------
+Copy constructor
+toString
+-------------------------
+
+Brent
+-------------------------
+Grave
+- Drop Piece (From captured pieces)
+-------------------------
+
+Emma
+-------------------------
+- Select Piece
+- Move Piece (Directions specific to piece type) (3 movements)
+- Capture Piece (By moving)
+-------------------------
+
+Matt
+-------------------------
+Board
+- Promote Piece (By moving to specific areas of board)
+- Quit
+- New Game
+-------------------------
+
+
+The Game Development -
+
+The Board: Keep Image or Make Class?
+Answer: Class
+
+The Grave: Image or Class?
+Answer: Class
+
+Promotion: Prompt or Grab?
+Answer: Prompt with asking what they want to promote to, possible promotion button when piece is in play
+
+Piece Movement:
+Shall be in a class, most likely in the board class
+(Caveat - bounds checking helper method, check if can move on board)
+
+
+
