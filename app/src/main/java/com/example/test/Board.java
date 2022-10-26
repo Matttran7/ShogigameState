@@ -32,6 +32,7 @@ public class Board {
         for(int row = 0; row < size; row++){
             for(int col = 0; col < size; col++){
                 Tile addTile = new Tile(row, col, tileSize*col,tileSize*row);
+                tiles.add(addTile);
             }//for col
         }// for row
     }
