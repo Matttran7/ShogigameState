@@ -12,10 +12,10 @@ package com.example.test;
  * */
 
 public class Tile {
-    int row;
-    int col;
-    float xcord; // top left
-    float ycord; // top left
+    private int row;
+    private int col;
+    private float xcord; // top left
+    private float ycord; // top left
     public Tile() {
         row = 0;
         col = 0;
@@ -29,4 +29,6 @@ public class Tile {
         xcord = _xcord;
         ycord = _ycord;
     }
+    public float getXcord(){return xcord;}
+    public float getYcord(){return ycord;}
 }

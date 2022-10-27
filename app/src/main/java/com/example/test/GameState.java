@@ -1,5 +1,9 @@
 package com.example.test;
 
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.SurfaceView;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -14,7 +18,7 @@ import java.util.Random;
  *
  * */
 
-public class GameState {
+public class GameState extends SurfaceView{
     /* [other class]/
      * Board (reference to copy constructor)
      * Pieces
@@ -62,8 +66,7 @@ public class GameState {
     /**
      * Current state of the game deep copy constructor
      */
-    public GameState(int id, GameState orig) { //DEEP COPY cntr
-
+    public GameState(int id, GameState orig) {
         this.turn = orig.turn;
         this.board = orig.board;
         assignPieces();
@@ -72,7 +75,17 @@ public class GameState {
         this.pieces1.addAll(orig.pieces1);
         this.pieces2.addAll(orig.pieces2);
     }
-
+    /**
+     * Draw board
+     * */
+    public void onDraw(Canvas canvas){
+        // draw lines
+        // draw tiles
+        int tileSize = board.getTileSize();
+        for(Tile tile : board.tiles){
+            canvas.drawRect(tile.getXcord(),tile.getYcord(),tile.getXcord()+tileSize,tile.getYcord()+tileSize);
+        }
+    }
     /**
      * Determine next turn based on current turn
      */

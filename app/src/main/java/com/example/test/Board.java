@@ -36,4 +36,7 @@ public class Board {
             }//for col
         }// for row
     }
+    public int getTileSize(){return tileSize;}
+
+
 }
