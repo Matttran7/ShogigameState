@@ -51,12 +51,15 @@ public class Graveyard {
 
         //Hardcoded bishop just for now
         //To make this fluid, might need to add getPiece function in Piece class
-        Piece piece = new Piece(Piece.GAME_PIECES.BISHOP, Piece.DIRECTION.BACKWARD);
-        int val = 0;
-        while(graveBoard.size() > val){
-            graveBoard.add(piece);
-            val++;
-        }
+
+
+// UNNECESSARY CURRENTLY
+//        Piece piece = new Piece(Piece.GAME_PIECES.BISHOP, Piece.DIRECTION.BACKWARD);
+//        int val = 0;
+//        while(graveBoard.size() > val){
+//            graveBoard.add(piece);
+//            val++;
+//        }
 
     }
 

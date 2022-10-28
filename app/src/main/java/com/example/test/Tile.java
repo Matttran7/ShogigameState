@@ -29,6 +29,23 @@ public class Tile {
         xcord = _xcord;
         ycord = _ycord;
     }
-    public float getXcord(){return xcord;}
-    public float getYcord(){return ycord;}
+
+//    public int getCol() {
+//        return col;
+//    }
+//
+//    public int getRow() {
+//        return row;
+//    }
+//
+//    public void setCol(int col) {
+//        this.col = col;
+//    }
+//
+//    public void setRow(int row) {
+//        this.row = row;
+//    }
+
+    //    public float getXcord(){return xcord;}
+//    public float getYcord(){return ycord;}
 }
