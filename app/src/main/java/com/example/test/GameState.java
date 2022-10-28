@@ -55,13 +55,17 @@ public class GameState {
      * Current state of the game constructor
      */
     public GameState() { //Cntr
-        turn = first();
+        turn = !first();
         board = new Board();
         assignPieces();
         grave_1 = new Graveyard();
         grave_2 = new Graveyard();
         pieces1 = new ArrayList<Piece>();
         pieces2 = new ArrayList<Piece>();
+
+        changeTurn();
+        //Declare turn the opposite of first so we can call the changeTurn method
+        //to assign banner a value and correct the turn value bc I'm lazy
     }
 
     /**
@@ -108,9 +112,40 @@ public class GameState {
      */
     @Override
     public String toString() {
-        return "Weeee";
+        String string = "Player 1 Pieces: ";
+        int iterations = 0;
+        for (Piece p : pieces1) {
+            string = string + p.pieceType + " at (" + p.getCol() + ", " + p.getRow() + ")";
+
+            iterations++;
+
+            if (iterations != pieces1.size()) {
+                string = string + "; ";
+            } else {
+                string = string + ". ";
+            }
+        }
+
+        string = string + "Player 2 Pieces: ";
+        iterations = 0;
+        for (Piece p : pieces2) {
+            string = string + p.pieceType + " at (" + p.getCol() + ", " + p.getRow() + ")";
+
+            iterations++;
+
+            if (iterations != pieces2.size()) {
+                string = string + "; ";
+            } else {
+                string = string + ". ";
+            }
+        }
+
+        if (!isChecked()) {
+            string = string + "No one is in check. ";
+        }
+
+        return string + banner + ".";
     }
-    //TODO: MAKE THIS AN ACTUAL METHOD
 
 
     //Make methods for defined actions
@@ -306,17 +341,6 @@ public class GameState {
 
     /**
      * Piece movement (hard coded now, flexible code later)
-     * Pre-set pieces: p1 (pawn) at (7r,8c), p2 (pawn) at (3r,1c), p1 (rook) at (8r,8c)
-     */
-    public void initialPositions() {
-        // identify piece
-
-
-    }
-
-    /**
-     * Piece movement (hard coded now, flexible code later)
-     * Pre-set pieces: p1 (pawn) to (6r,8c), p2 (pawn) to (4r,1c), p1 (rook) to (7r,8c)
      */
     public void movePiece() {
 
@@ -330,6 +354,7 @@ public class GameState {
                 break;
 
         }
+        changeTurn();
     }
 
     /**
