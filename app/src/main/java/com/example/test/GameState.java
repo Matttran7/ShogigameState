@@ -1,7 +1,6 @@
 package com.example.test;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 
@@ -370,5 +369,22 @@ public class GameState {
         // Sends ID to graveyard
         return 0;
         // identify the piece
+    }
+
+    public void moveLance() {
+        //Complete a bounds check on the board based on the lance's specific movements
+        ArrayList<ArrayList<Integer>> cords = new ArrayList<>();
+        ArrayList<Integer> toStore = new ArrayList<>();
+        if (turnCount == 1) {
+            int yCoord = pieces1.getCol();
+            int xCoord = pieces1.getRow();
+
+            for(int i = yCoord - 1; i > 0 ; --i){
+                toStore.add(xCoord);
+                toStore.add(i);
+                cords.add(toStore);
+                toStore.clear();
+            }
+        }
     }
 }
