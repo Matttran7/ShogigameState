@@ -49,7 +49,7 @@ public class GameState {
     private ArrayList<Piece> pieces1;
     private ArrayList<Piece> pieces2;
     private String banner;
-    private int turnCount = 1;
+    private int turnCount = 0;
 
     /**
      * Current state of the game constructor
@@ -115,34 +115,36 @@ public class GameState {
         String string = "Player 1 Pieces: ";
         int iterations = 0;
         for (Piece p : pieces1) {
-            string = string + p.pieceType + " at (" + p.getCol() + ", " + p.getRow() + ")";
-
-            iterations++;
-
-            if (iterations != pieces1.size()) {
-                string = string + "; ";
-            } else {
-                string = string + ". ";
+            if (!(p.getRow() == -1 || p.getCol() == -1)) { //Don't mention promotion pieces ugh
+                string = string + p.pieceType + " at (" + p.getCol() + ", " + p.getRow() + ")";
+                iterations++;
+                if (iterations != pieces1.size()) {
+                    string = string + "; ";
+                } else {
+                    string = string + ". ";
+                }
             }
         }
 
         string = string + "Player 2 Pieces: ";
         iterations = 0;
         for (Piece p : pieces2) {
-            string = string + p.pieceType + " at (" + p.getCol() + ", " + p.getRow() + ")";
-
-            iterations++;
-
-            if (iterations != pieces2.size()) {
-                string = string + "; ";
-            } else {
-                string = string + ". ";
+            if (!(p.getRow() == -1 || p.getCol() == -1)) { //Don't mention promotion pieces ugh
+                string = string + p.pieceType + " at (" + p.getCol() + ", " + p.getRow() + ")";
+                iterations++;
+                if (iterations != pieces2.size()) {
+                    string = string + "; ";
+                } else {
+                    string = string + ". ";
+                }
             }
         }
 
         if (!isChecked()) {
             string = string + "No one is in check. ";
         }
+
+        string = string + "Number of turns made: " + turnCount + ". ";
 
         return string + banner + ".";
     }
@@ -355,6 +357,7 @@ public class GameState {
 
         }
         changeTurn();
+        turnCount++;
     }
 
     /**
