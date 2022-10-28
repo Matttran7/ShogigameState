@@ -375,6 +375,7 @@ public class GameState {
         //Complete a bounds check on the board based on the lance's specific movements
         ArrayList<ArrayList<Integer>> cords = new ArrayList<>();
         ArrayList<Integer> toStore = new ArrayList<>();
+
         if (turnCount == 1) {
             int yCoord = pieces1.getCol();
             int xCoord = pieces1.getRow();
