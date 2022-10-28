@@ -122,8 +122,17 @@ public class GameState {
                 pieces2.add(new Piece(piece,Piece.DIRECTION.BACKWARD)); //player 2 (id = 1)
             } // for i
         } // for pieces
+
+        placePieces(pieces1, 0);
+        placePieces(pieces2, 1);
     }
 
+
+    /**
+     * Assigns rows and columns to each piece for initial setup for each player
+     * Promotion pieces are unassigned due to them not existing on the board at that time
+     *
+     * */
     private void placePieces(ArrayList<Piece> heehee, int id) { //board is 9x9 tiles
         //front row is 9 pawns
         //middle row is 1 space, bishop, 5 spaces, rook, 1 space (left to right from players pov)
