@@ -18,7 +18,7 @@ import java.util.Random;
  *
  * */
 
-public class GameState extends SurfaceView{
+public class GameState{
     /* [other class]/
      * Board (reference to copy constructor)
      * Pieces
@@ -74,17 +74,6 @@ public class GameState extends SurfaceView{
         this.grave_2 = orig.grave_2;
         this.pieces1.addAll(orig.pieces1);
         this.pieces2.addAll(orig.pieces2);
-    }
-    /**
-     * Draw board
-     * */
-    public void onDraw(Canvas canvas){
-        // draw lines
-        // draw tiles
-        int tileSize = board.getTileSize();
-        for(Tile tile : board.tiles){
-            canvas.drawRect(tile.getXcord(),tile.getYcord(),tile.getXcord()+tileSize,tile.getYcord()+tileSize);
-        }
     }
     /**
      * Determine next turn based on current turn

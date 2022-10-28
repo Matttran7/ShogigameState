@@ -1,6 +1,7 @@
 package com.example.test;
 
 import android.os.Bundle;
+import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button woo;
     private GameState firstInstance, secondInstance, thirdInstance;
     private String gameString;
+    private SurfaceView sv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         thirdInstance = new GameState();
 
         woo.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick (View view) {
 
