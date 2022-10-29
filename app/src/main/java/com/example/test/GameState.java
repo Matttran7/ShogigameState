@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -18,7 +19,7 @@ import java.util.Random;
  *
  * */
 
-public class GameState {
+public class GameState{
     /* [other class]/
      * Board (reference to copy constructor)
      * Pieces
@@ -47,6 +48,7 @@ public class GameState {
     private Graveyard grave_2;
     private ArrayList<Piece> pieces1;
     private ArrayList<Piece> pieces2;
+    private ArrayList<ArrayList<Integer>> cords;
     private String banner;
     private int turnCount = 0;
 
@@ -61,6 +63,7 @@ public class GameState {
         grave_2 = new Graveyard();
         pieces1 = new ArrayList<Piece>();
         pieces2 = new ArrayList<Piece>();
+        cords = new ArrayList<>();
 
         changeTurn();
         //Declare turn the opposite of first so we can call the changeTurn method
@@ -111,6 +114,7 @@ public class GameState {
      */
     @Override
     public String toString() {
+        Random rand = new Random();
         String string = "Player 1 Pieces: ";
         int iterations = 0;
         for (Piece p : pieces1) {
@@ -124,7 +128,8 @@ public class GameState {
                 }
             }
         }
-
+        // newline
+        string = string + "\n";
         string = string + "Player 2 Pieces: ";
         iterations = 0;
         for (Piece p : pieces2) {
@@ -138,13 +143,30 @@ public class GameState {
                 }
             }
         }
-
+        // newline
+        string = string + "\n";
         if (!isChecked()) {
             string = string + "No one is in check. ";
         }
-
+        // newline
+        string = string + "\n";
         string = string + "Number of turns made: " + turnCount + ". ";
-
+        // newline
+        string = string + "\n";
+        string = string + "Possible moves for King:";
+        moveKing(turn);
+        // make a random move bc not human player yet
+        int randomMove = rand.nextInt(cords.size());
+        int movex = cords.get(randomMove).get(0);
+        int movey = cords.get(randomMove).get(1);
+        for(ArrayList<Integer> arraylist : cords){
+            string = string + "[";
+            string = string + arraylist.remove(0) + ", ";
+            string = string + arraylist.remove(0) + "], ";
+        }
+        // newline
+        string = string + "\n";
+        string = string + "King moves [ " + movex + " , " + movey + " ]";
         return string + banner + ".";
     }
 
@@ -373,7 +395,8 @@ public class GameState {
 
     public void moveLance() {
         //Complete a bounds check on the board based on the lance's specific movements
-        ArrayList<ArrayList<Integer>> cords = new ArrayList<>();
+        // must clear "cords" first, it holds all the possible moves for the current selected piece
+        cords.clear();
         ArrayList<Integer> toStore = new ArrayList<>();
 
         if (turnCount == 1) {
@@ -388,4 +411,74 @@ public class GameState {
             }
         }
     }
+
+    public void moveKing(boolean theTurn){
+        cords.clear();
+        ArrayList<Integer> toStore = new ArrayList<>();
+        int ycord = -1;
+        int xcord = -1;
+        int lever = 0;
+        if(theTurn) {
+             ycord = pieces1.get(pieces1.indexOf(Piece.GAME_PIECES.KING)).getCol();
+             xcord = pieces1.get(pieces1.indexOf(Piece.GAME_PIECES.KING)).getRow();
+             lever = 1;
+        }
+        if(!theTurn) {
+             ycord = pieces2.get(pieces2.indexOf(Piece.GAME_PIECES.KING)).getCol();
+             xcord = pieces2.get(pieces2.indexOf(Piece.GAME_PIECES.KING)).getRow();
+             lever = 1;
+        }
+        if(lever == 1) {
+            if (xcord > 0) {
+                toStore.add(xcord - 1);
+                toStore.add(ycord);
+                cords.add(toStore);
+                toStore.clear();
+            }
+            if (xcord > 0 && ycord < 9) {
+                toStore.add(xcord - 1);
+                toStore.add(ycord + 1);
+                cords.add(toStore);
+                toStore.clear();
+            }
+            if (ycord < 9) {
+                toStore.add(xcord);
+                toStore.add(ycord + 1);
+                cords.add(toStore);
+                toStore.clear();
+            }
+            if (xcord < 9 && ycord < 9) {
+                toStore.add(xcord + 1);
+                toStore.add(ycord + 1);
+                cords.add(toStore);
+                toStore.clear();
+            }
+            if (xcord < 9) {
+                toStore.add(xcord + 1);
+                toStore.add(ycord);
+                cords.add(toStore);
+                toStore.clear();
+            }
+            if (xcord < 9 && ycord > 0) {
+                toStore.add(xcord + 1);
+                toStore.add(ycord - 1);
+                cords.add(toStore);
+                toStore.clear();
+            }
+            if (ycord > 0) {
+                toStore.add(xcord);
+                toStore.add(ycord - 1);
+                cords.add(toStore);
+                toStore.clear();
+            }
+            if (xcord > 0 && ycord > 0) {
+                toStore.add(xcord - 1);
+                toStore.add(ycord - 1);
+                cords.add(toStore);
+                toStore.clear();
+            }
+        } // lever
+
+        }// if turncount
+
 }
