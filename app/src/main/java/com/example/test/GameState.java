@@ -400,8 +400,8 @@ public class GameState{
         ArrayList<Integer> toStore = new ArrayList<>();
 
         if (turnCount == 1) {
-            int yCoord = pieces1.getCol();
-            int xCoord = pieces1.getRow();
+            int yCoord = pieces1.get(pieces1.indexOf(Piece.GAME_PIECES.LANCE)).getCol();
+            int xCoord = pieces1.get(pieces1.indexOf(Piece.GAME_PIECES.LANCE)).getCol();
 
             for(int i = yCoord - 1; i > 0 ; --i){
                 toStore.add(xCoord);
@@ -412,9 +412,24 @@ public class GameState{
         }
     }
 
-    public void moveKing(boolean theTurn){
-        cords.clear();
+    public void movePawn(){
+        ArrayList<ArrayList<Integer>> cords = new ArrayList<>();
         ArrayList<Integer> toStore = new ArrayList<>();
+        if(turnCount == 1){
+            int ycord = pieces1.get(pieces1.indexOf(Piece.GAME_PIECES.PAWN)).getCol();
+            int xcord = pieces1.get(pieces1.indexOf(Piece.GAME_PIECES.PAWN)).getRow();
+            if (xcord > 0) {
+                toStore.add(xcord);
+                toStore.add(ycord-1);
+                cords.add(toStore);
+                toStore.clear();
+
+            }// if turncount
+        }
+
+    public void moveKing (boolean theTurn) {
+        cords.clear();
+        //ArrayList<Integer> toStore = new ArrayList<>();
         int ycord = -1;
         int xcord = -1;
         int lever = 0;
