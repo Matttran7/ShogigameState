@@ -48,7 +48,7 @@ public class GameState {
     private Graveyard grave_2;
     private ArrayList<Piece> pieces1;
     private ArrayList<Piece> pieces2;
-    private ArrayList<ArrayList<Integer>> cords;
+    private ArrayList<Integer> cords;
     private String banner;
     private int turnCount = 0;
 
@@ -62,7 +62,7 @@ public class GameState {
         grave_2 = new Graveyard();
         pieces1 = new ArrayList<Piece>();
         pieces2 = new ArrayList<Piece>();
-        cords = new ArrayList<ArrayList<Integer>>();
+        cords = new ArrayList<>();
         assignPieces();
         changeTurn();
         //Declare turn the opposite of first so we can call the changeTurn method
@@ -86,8 +86,8 @@ public class GameState {
         for(Piece p : orig.pieces2){
             this.pieces2.add(p);
         }
-        this.cords = new ArrayList<ArrayList<Integer>>();
-        for(ArrayList<Integer> i : orig.cords){
+        this.cords = new ArrayList<Integer>();
+        for(Integer i : orig.cords){
             this.cords.add(i);
         }
         //this.pieces1.addAll(orig.pieces1);
@@ -155,12 +155,17 @@ public class GameState {
         moveKing(turn);
         // make a random move bc not human player yet
      //   int randomMove = rand.nextInt(cords.size()-1);
-        int movex = cords.get(4).get(0);
-        int movey = cords.get(4).get(1);
-        for (ArrayList<Integer> arraylist : cords) {
-            string = string + "[";
-            string = string + arraylist.remove(0) + ", ";
-            string = string + arraylist.remove(0) + "], ";
+        int theRand = rand.nextInt(cords.size()-1);
+        int movex = cords.get(theRand);
+        int movey = cords.get(theRand+1);
+        for (int i = 0; i < cords.size(); i++) {
+            if(i%2 == 0) {
+                string = string + "[";
+                string = string + cords.remove(0) + ", ";
+            }
+            else {
+                string = string + cords.remove(0) + "], ";
+            }
         }
         // newline
         string = string + "\n";
@@ -414,20 +419,18 @@ public class GameState {
             for (int i = yCoord - 1; i > 0; --i) {
                 toStore.add(xCoord);
                 toStore.add(i);
-                cords.add(toStore);
+                //cords.add(toStore);
                 toStore.clear();
             }
         }
         /**xCoord does not work, filler code below (respectively for all move functions)*/
         // top going
-        toStore.add(0);
-        toStore.add(1);
-        cords.add(toStore);
-        toStore.clear();
+        cords.add(0);
+        cords.add(1);
     }
 
     public void movePawn() {
-        ArrayList<ArrayList<Integer>> cords = new ArrayList<>();
+        cords.clear();
         ArrayList<Integer> toStore = new ArrayList<>();
         if (1==0) {
             int ycord = pieces1.get(pieces1.indexOf(Piece.GAME_PIECES.PAWN)).getCol();
@@ -435,20 +438,18 @@ public class GameState {
             if (xcord > 0) {
                 toStore.add(xcord);
                 toStore.add(ycord - 1);
-                cords.add(toStore);
+             //   cords.add(toStore);
                 toStore.clear();
 
             }// if turncount
         }
-        toStore.add(4);
-        toStore.add(5);
-        cords.add(toStore);
-        toStore.clear();
+        cords.add(4);
+        cords.add(5);
 
     }
 
         public void moveKing(boolean theTurn){
-            cords.clear();
+        cords.clear();
             ArrayList<Integer> toStore = new ArrayList<>();
             int ycord = -1;
             int xcord = -1;
@@ -463,7 +464,7 @@ public class GameState {
                 xcord = pieces2.get(pieces2.indexOf(Piece.GAME_PIECES.KING)).getRow();
                 lever = 1;
             }
-            if (lever == 1) {
+         /**   if (lever == 1) {
                 if (xcord > 0 && 1==0) {
                     toStore.add(xcord - 1);
                     toStore.add(ycord);
@@ -512,18 +513,12 @@ public class GameState {
                     cords.add(toStore);
                     toStore.clear();
                 }
-            } // lever
-            toStore.add(3);
-            toStore.add(7);
-            cords.add(toStore);
-            toStore.clear();
-            toStore.add(4);
-            toStore.add(7);
-            cords.add(toStore);
-            toStore.clear();
-            toStore.add(5);
-            toStore.add(7);
-            cords.add(toStore);
-            toStore.clear();
+            } // lever*/
+            cords.add(3);
+            cords.add(7);
+            cords.add(4);
+            cords.add(7);
+            cords.add(5);
+            cords.add(7);
         }// if turncount
 }
