@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         woo = findViewById(R.id.runButton);
 
         firstInstance = new GameState();
-        secondInstance = new GameState(0, firstInstance);
+        secondInstance = new GameState(firstInstance);
         //TODO: Fix gamestate copy cntr to make it from a specific player perspective
         thirdInstance = new GameState();
 
