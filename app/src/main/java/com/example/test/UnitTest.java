@@ -11,4 +11,14 @@ public class UnitTest {
     public void setup() throws Exception {
         activity = Robolectric.buildActivity(MainActivity.class).create().resume().get();
     }
+
+    @Test
+    public void copyConstruct_GameState(){
+        GameState origGS = new GameState();
+        GameState copyGS = new GameState(origGS);
+        assertTrue("GameState Copy Constructor is not equal",origGS.equals(copyGS));
+    }
+
+    @Test
+    public void
 }

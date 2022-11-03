@@ -506,56 +506,56 @@ public class GameState {
                 xcord = pieces2.get(pieces2.indexOf(Piece.GAME_PIECES.KING)).getRow();
                 lever = 1;
             }
-         /**   if (lever == 1) {
+            if (lever == 1) {
                 if (xcord > 0 && 1==0) {
                     toStore.add(xcord - 1);
                     toStore.add(ycord);
-                    cords.add(toStore);
+                   // cords.add(toStore);
                     toStore.clear();
                 }
                 if (xcord > 0 && ycord < 9&& 1==0) {
                     toStore.add(xcord - 1);
                     toStore.add(ycord + 1);
-                    cords.add(toStore);
+                   // cords.add(toStore);
                     toStore.clear();
                 }
                 if (ycord < 9&& 1==0) {
                     toStore.add(xcord);
                     toStore.add(ycord + 1);
-                    cords.add(toStore);
+                   // cords.add(toStore);
                     toStore.clear();
                 }
                 if (xcord < 9 && ycord < 9&& 1==0) {
                     toStore.add(xcord + 1);
                     toStore.add(ycord + 1);
-                    cords.add(toStore);
+                   // cords.add(toStore);
                     toStore.clear();
                 }
                 if (xcord < 9&& 1==0) {
                     toStore.add(xcord + 1);
                     toStore.add(ycord);
-                    cords.add(toStore);
+                   // cords.add(toStore);
                     toStore.clear();
                 }
                 if (xcord < 9 && ycord > 0&& 1==0) {
                     toStore.add(xcord + 1);
                     toStore.add(ycord - 1);
-                    cords.add(toStore);
+                   // cords.add(toStore);
                     toStore.clear();
                 }
                 if (ycord > 0&& 1==0) {
                     toStore.add(xcord);
                     toStore.add(ycord - 1);
-                    cords.add(toStore);
+                    //cords.add(toStore);
                     toStore.clear();
                 }
                 if (xcord > 0 && ycord > 0&& 1==0) {
                     toStore.add(xcord - 1);
                     toStore.add(ycord - 1);
-                    cords.add(toStore);
+                  //  cords.add(toStore);
                     toStore.clear();
                 }
-            } // lever*/
+            } // lever
             cords.add(3);
             cords.add(7);
             cords.add(4);
