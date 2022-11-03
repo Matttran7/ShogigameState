@@ -4,9 +4,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import static org.junit.Assert.*;
 
 @RunWith(RobolectricTestRunner.class)
 public class UnitTest {
+
+    public MainActivity activity;
+
     @Before
     public void setup() throws Exception {
         activity = Robolectric.buildActivity(MainActivity.class).create().resume().get();
@@ -19,6 +23,4 @@ public class UnitTest {
         assertTrue("GameState Copy Constructor is not equal",origGS.equals(copyGS));
     }
 
-    @Test
-    public void
 }
