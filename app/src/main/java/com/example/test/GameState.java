@@ -113,11 +113,11 @@ public class GameState {
     @Override
     public String toString() {
         Random rand = new Random();
-        String string = "Player 1 Pieces: ";
+        String string = "Player 1 Pieces: \n";
         int iterations = 0;
         for (Piece p : pieces1) {
             if (!(p.getRow() == -1 || p.getCol() == -1)) { //Don't mention promotion pieces ugh
-                string = string + p.pieceType + " at (" + p.getCol() + ", " + p.getRow() + ")";
+                string = string + p.pieceType + " at (" + p.getCol() + ", " + p.getRow() + ")\n";
                 iterations++;
                 if (iterations != pieces1.size()) {
                     string = string + "; ";
@@ -128,11 +128,11 @@ public class GameState {
         }
         // newline
         string = string + "\n";
-        string = string + "Player 2 Pieces: ";
+        string = string + "Player 2 Pieces: \n";
         iterations = 0;
         for (Piece p : pieces2) {
             if (!(p.getRow() == -1 || p.getCol() == -1)) { //Don't mention promotion pieces ugh
-                string = string + p.pieceType + " at (" + p.getCol() + ", " + p.getRow() + ")";
+                string = string + p.pieceType + " at (" + p.getCol() + ", " + p.getRow() + ")\n";
                 iterations++;
                 if (iterations != pieces2.size()) {
                     string = string + "; ";
@@ -169,7 +169,49 @@ public class GameState {
         }
         // newline
         string = string + "\n";
-        string = string + "King moves [ " + movex + " , " + movey + " ]";
+        string = string + "Player 1's King moves [ " + movex + " , " + movey + " ]";
+
+        string = string + "\n";
+        string = string + "Possible moves for Lance:";
+        moveLance(turn);
+        // make a random move bc not human player yet
+        //   int randomMove = rand.nextInt(cords.size()-1);
+        theRand = rand.nextInt(cords.size()-1);
+        movex = cords.get(theRand);
+        movey = cords.get(theRand+1);
+        for (int i = 0; i < cords.size(); i++) {
+            if(i%2 == 0) {
+                string = string + "[";
+                string = string + cords.remove(0) + ", ";
+            }
+            else {
+                string = string + cords.remove(0) + "], ";
+            }
+        }
+        // newline
+        string = string + "\n";
+        string = string + "Player 2's Lance moves [ " + movex + " , " + movey + " ]";
+
+        string = string + "\n";
+        string = string + "Possible moves for Pawn:";
+        movePawn(turn);
+        // make a random move bc not human player yet
+        //   int randomMove = rand.nextInt(cords.size()-1);
+        theRand = rand.nextInt(cords.size()-1);
+        movex = cords.get(theRand);
+        movey = cords.get(theRand+1);
+        for (int i = 0; i < cords.size(); i++) {
+            if(i%2 == 0) {
+                string = string + "[";
+                string = string + cords.remove(0) + ", ";
+            }
+            else {
+                string = string + cords.remove(0) + "], ";
+            }
+        }
+        // newline
+        string = string + "\n";
+        string = string + "Player 1's Pawn moves [ " + movex + " , " + movey + " ]";
         return string + banner + ".";
     }
 
@@ -406,7 +448,7 @@ public class GameState {
         // identify the piece
     }
 
-    public void moveLance() {
+    public void moveLance(boolean theTurn) {
         //Complete a bounds check on the board based on the lance's specific movements
         // must clear "cords" first, it holds all the possible moves for the current selected piece
         cords.clear();
@@ -429,7 +471,7 @@ public class GameState {
         cords.add(1);
     }
 
-    public void movePawn() {
+    public void movePawn(boolean theTurn) {
         cords.clear();
         ArrayList<Integer> toStore = new ArrayList<>();
         if (1==0) {
