@@ -7,7 +7,7 @@ import org.robolectric.RobolectricTestRunner;
 import static org.junit.Assert.*;
 
 @RunWith(RobolectricTestRunner.class)
-public class UnitTest {
+public class ShogiTests {
 
     public MainActivity activity;
 
