@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal|center_vertical"
-        android:inputType="text"
+        android:inputType="textMultiLine"
         android:text="state_text" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -156,15 +156,18 @@ public class GameState {
         // make a random move bc not human player yet
      //   int randomMove = rand.nextInt(cords.size()-1);
         int theRand = rand.nextInt(cords.size()-1);
+        while(!(theRand%2 == 0)){
+            theRand = rand.nextInt(cords.size()-1);
+        }
         int movex = cords.get(theRand);
         int movey = cords.get(theRand+1);
         for (int i = 0; i < cords.size(); i++) {
             if(i%2 == 0) {
                 string = string + "[";
-                string = string + cords.remove(0) + ", ";
+                string = string + cords.get(i) + ", ";
             }
             else {
-                string = string + cords.remove(0) + "], ";
+                string = string + cords.get(i) + "], ";
             }
         }
         // newline
@@ -182,10 +185,10 @@ public class GameState {
         for (int i = 0; i < cords.size(); i++) {
             if(i%2 == 0) {
                 string = string + "[";
-                string = string + cords.remove(0) + ", ";
+                string = string + cords.get(i) + ", ";
             }
             else {
-                string = string + cords.remove(0) + "], ";
+                string = string + cords.get(i) + "], ";
             }
         }
         // newline
@@ -203,10 +206,10 @@ public class GameState {
         for (int i = 0; i < cords.size(); i++) {
             if(i%2 == 0) {
                 string = string + "[";
-                string = string + cords.remove(0) + ", ";
+                string = string + cords.get(i) + ", ";
             }
             else {
-                string = string + cords.remove(0) + "], ";
+                string = string + cords.get(i) + "], ";
             }
         }
         // newline
